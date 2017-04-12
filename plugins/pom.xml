@@ -40,7 +40,6 @@
         <module>plugin-orion</module>
         <module>plugin-git</module>
         <module>plugin-github</module>
-        <module>plugin-dashboard</module>
         <module>plugin-gwt</module>
         <module>plugin-python</module>
         <module>plugin-svn</module>

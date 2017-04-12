@@ -1054,4 +1054,13 @@ public interface CoreLocalizationConstant extends Messages {
     @Key("connection.closed.dialog.title")
     String connectionClosedDialogTitle();
 
+    @Key("open.dashboard.toolbar-button.title")
+    String openDashboardToolbarButtonTitle();
+
+    @Key("open.dashboard.url.workspace")
+    String openDashboardUrlWorkspace(String workspaceID);
+
+    @Key("open.dashboard.url.workspaces")
+    String openDashboardUrlWorkspaces();
+
 }

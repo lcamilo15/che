@@ -8,15 +8,16 @@
  * Contributors:
  *   Codenvy, S.A. - initial API and implementation
  *******************************************************************************/
-package org.eclipse.che.ide.ext.dashboard.client;
+package org.eclipse.che.ide.dashboard;
 
 import com.google.gwt.dom.client.Element;
 import com.google.gwt.user.client.DOM;
 import com.google.gwt.user.client.ui.FlowPanel;
 import com.google.gwt.user.client.ui.Widget;
 import com.google.inject.Inject;
-
 import com.google.web.bindery.event.shared.EventBus;
+import org.eclipse.che.ide.CoreLocalizationConstant;
+import org.eclipse.che.ide.Resources;
 import org.eclipse.che.ide.api.action.Action;
 import org.eclipse.che.ide.api.action.ActionEvent;
 import org.eclipse.che.ide.api.action.CustomComponentAction;
@@ -33,20 +34,20 @@ import static org.eclipse.che.ide.ui.menu.PositionController.VerticalAlign.BOTTO
  *
  * @author Oleksii Orel
  */
-public class RedirectToDashboardAction extends Action implements CustomComponentAction,
+public class OpenDashboardAction extends Action implements CustomComponentAction,
         WorkspaceStartedEvent.Handler, WorkspaceStoppedEvent.Handler {
 
-    private final DashboardLocalizationConstant constant;
-    private final DashboardResources            resources;
-    private final AppContext                    appContext;
+    private final CoreLocalizationConstant  constant;
+    private final Resources                 resources;
+    private final AppContext                appContext;
 
-    private Element                             arrow;
+    private Element                         arrow;
 
     @Inject
-    public RedirectToDashboardAction(DashboardLocalizationConstant constant,
-                                     DashboardResources resources,
-                                     EventBus eventBus,
-                                     AppContext appContext) {
+    public OpenDashboardAction(CoreLocalizationConstant constant,
+                               Resources resources,
+                               EventBus eventBus,
+                               AppContext appContext) {
         this.constant = constant;
         this.resources = resources;
         this.appContext = appContext;
@@ -66,7 +67,7 @@ public class RedirectToDashboardAction extends Action implements CustomComponent
         panel.setHeight("24px");
 
         arrow = DOM.createAnchor();
-        arrow.setClassName(resources.dashboardCSS().dashboardArrow());
+        arrow.setClassName(resources.coreCss().dashboardArrow());
         arrow.setInnerHTML("<i class=\"fa fa-chevron-right\" />");
         panel.getElement().appendChild(arrow);
 

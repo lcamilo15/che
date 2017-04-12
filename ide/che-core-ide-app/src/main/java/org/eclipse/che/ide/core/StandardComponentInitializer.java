@@ -72,6 +72,7 @@ import org.eclipse.che.ide.api.parts.PerspectiveManager;
 import org.eclipse.che.ide.command.editor.CommandEditorProvider;
 import org.eclipse.che.ide.command.palette.ShowCommandsPaletteAction;
 import org.eclipse.che.ide.connection.WsConnectionListener;
+import org.eclipse.che.ide.dashboard.OpenDashboardAction;
 import org.eclipse.che.ide.imageviewer.ImageViewerProvider;
 import org.eclipse.che.ide.macro.ServerHostNameMacro;
 import org.eclipse.che.ide.macro.ServerMacro;
@@ -123,6 +124,7 @@ import static org.eclipse.che.ide.api.action.IdeActions.GROUP_EDITOR_CONTEXT_MEN
 import static org.eclipse.che.ide.api.action.IdeActions.GROUP_EDITOR_TAB_CONTEXT_MENU;
 import static org.eclipse.che.ide.api.action.IdeActions.GROUP_FILE_NEW;
 import static org.eclipse.che.ide.api.action.IdeActions.GROUP_HELP;
+import static org.eclipse.che.ide.api.action.IdeActions.GROUP_LEFT_MAIN_MENU;
 import static org.eclipse.che.ide.api.action.IdeActions.GROUP_MAIN_CONTEXT_MENU;
 import static org.eclipse.che.ide.api.action.IdeActions.GROUP_MAIN_MENU;
 import static org.eclipse.che.ide.api.action.IdeActions.GROUP_MAIN_TOOLBAR;
@@ -162,9 +164,10 @@ public class StandardComponentInitializer {
     public static final String CREATE_PROJECT        = "createProject";
     public static final String IMPORT_PROJECT        = "importProject";
     public static final String CLOSE_ACTIVE_EDITOR   = "closeActiveEditor";
+    public static final String OPEN_DASHBOARD_ACTION = "openDashboardAction";
+    public static final String RENAME                = "renameResource";
     public static final String SIGNATURE_HELP        = "signatureHelp";
     public static final String SOFT_WRAP             = "softWrap";
-    public static final String RENAME                = "renameResource";
     public static final String SHOW_REFERENCE        = "showReference";
     public static final String SHOW_COMMANDS_PALETTE = "showCommandsPalette";
 
@@ -374,6 +377,9 @@ public class StandardComponentInitializer {
 
     @Inject
     private SoftWrapAction softWrapAction;
+
+    @Inject
+    OpenDashboardAction openDashboardAction;
 
     @Inject
     private PerspectiveManager perspectiveManager;
@@ -754,6 +760,11 @@ public class StandardComponentInitializer {
         editorContextMenuGroup.addSeparator();
         editorContextMenuGroup.add(fullTextSearchAction);
         editorContextMenuGroup.add(closeActiveEditorAction);
+
+        // Add `Open Dashboard` action to left part of the top menu
+        actionManager.registerAction(OPEN_DASHBOARD_ACTION, openDashboardAction);
+        DefaultActionGroup mainMenuLeftPart = (DefaultActionGroup) actionManager.getAction(GROUP_LEFT_MAIN_MENU);
+        mainMenuLeftPart.add(openDashboardAction, Constraints.FIRST);
 
         // Define hot-keys
         keyBinding.getGlobal().addKey(new KeyBuilder().action().alt().charCode('n').build(), NAVIGATE_TO_FILE);

@@ -213,5 +213,7 @@ public interface Resources extends Tree.Resources,
 
         @ClassName("codeassistant-highlight")
         String codeassistantHighlight();
+
+        String dashboardArrow();
     }
 }

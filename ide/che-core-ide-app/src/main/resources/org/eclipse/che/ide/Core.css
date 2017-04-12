@@ -802,3 +802,23 @@ a {
     color: completionPopupItemHighlightTextColor;
 }
 
+/********************************************************************************************
+ *
+ * Open Dashboard arrow
+ *
+ ********************************************************************************************/
+
+.dashboardArrow {
+    position: absolute;
+    cursor: pointer;
+    outline: none;
+    width: 24px;
+    height: 16px;
+    top: 9px;
+    background-color: #525c86;
+    color: #f1f1f1!important;
+    font-size: 8px;
+    padding: 0px;
+    line-height: 16px;
+    text-align: center;
+}
